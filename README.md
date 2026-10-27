@@ -1,2 +1,4 @@
-# chiwa-portfolio
-Webデザインとイラストを紹介する、Chiwaのポートフォリオサイト
+# Chiwa Portfolio
+
+Webデザインとイラストを紹介するポートフォリオサイトです。
+HTML、CSS、JavaScriptで制作しています。

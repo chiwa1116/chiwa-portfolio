@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Chiwaのプロフィールと制作に使うツールをご紹介します。">
+  <title>プロフィール | Chiwa</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a href="index.html" class="logo" aria-label="Chiwa トップページ">
+      <span class="logo-main">Chiwa</span>
+      <span class="logo-sub">Visual design &amp; illustration</span>
+    </a>
+    <nav aria-label="メインメニュー">
+      <ul class="nav-links">
+        <li><a href="works.html">制作実績</a></li>
+        <li><a href="about.html" aria-current="page">プロフィール</a></li>
+        <li><a href="service.html">制作メニュー</a></li>
+        <li><a href="contact.html">お問い合わせ</a></li>
+      </ul>
+    </nav>
+    <button class="hamburger" id="hamburger" type="button" aria-label="メニュー" aria-expanded="false" aria-controls="mobile-nav">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <nav class="mobile-nav" id="mobile-nav" aria-label="スマートフォン用メニュー">
+    <ul class="mobile-nav__list">
+      <li><a href="works.html">制作実績</a></li>
+      <li><a href="about.html">プロフィール</a></li>
+      <li><a href="service.html">制作メニュー</a></li>
+      <li><a href="contact.html">お問い合わせ</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="page-hero">
+      <div class="container">
+        <p class="sec-label">About Chiwa</p>
+        <h1 class="sec-title">プロフィール</h1>
+      </div>
+    </div>
+
+    <section id="about">
+      <div class="container">
+        <div class="about-row">
+          <figure class="about-portrait">
+            <img src="img/Chiwa.jpg" alt="海辺を歩くChiwaの写真">
+          </figure>
+
+          <div class="about-row__content">
+            <p class="sec-label">A little about me</p>
+            <h2 class="about-name">Chiwa</h2>
+            <p class="about-bio">
+              絵を描くことが好きで、イラスト制作を続けてきました。
+              その経験をWebのデザインにも活かし、色や形だけでなく、
+              作品やサービスの魅力がきちんと伝わる見せ方を考えています。
+              <br><br>
+              制作では、最初に目的やイメージを丁寧に伺うことを大切にしています。
+              ひとつずつ確認しながら、見た目と使いやすさの両面から
+              ご希望に合う形を一緒につくっていきます。
+            </p>
+          </div>
+        </div>
+
+        <div class="skill-section">
+          <div class="section-heading">
+            <div>
+              <p class="sec-label">Tools &amp; skills</p>
+              <h2 class="sec-title">制作に使うツール</h2>
+            </div>
+          </div>
+
+          <ul class="skill-list">
+            <li><span class="skill-name-text">Figma</span><span class="skill-note">画面デザイン</span></li>
+            <li><span class="skill-name-text">Photoshop</span><span class="skill-note">画像編集</span></li>
+            <li><span class="skill-name-text">Illustrator</span><span class="skill-note">グラフィック</span></li>
+            <li><span class="skill-name-text">Clip Studio Paint</span><span class="skill-note">イラスト制作</span></li>
+            <li><span class="skill-name-text">HTML / CSS</span><span class="skill-note">Webページ制作</span></li>
+            <li><span class="skill-name-text">JavaScript</span><span class="skill-note">基本的な動き</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a href="index.html" class="logo">
+      <span class="logo-main">Chiwa</span>
+      <span class="logo-sub">Visual design &amp; illustration</span>
+    </a>
+    <span class="footer-copy">© 2026 Chiwa</span>
+    <div class="footer-links">
+      <a href="https://www.instagram.com/Chiwa_design" target="_blank" rel="noopener noreferrer">Instagram</a>
+      <a href="https://x.com/Chiwa_design" target="_blank" rel="noopener noreferrer">X</a>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
+
