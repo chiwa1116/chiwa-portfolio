@@ -1148,92 +1148,7 @@ section {
 }
 .restaurant-work:hover .restaurant-work-link { color: var(--ink); }
 
-/* Gem-inspired page entrance and restrained motion */
-body.is-loading { overflow: hidden; }
-.site-loader {
-  position: fixed;
-  z-index: 10000;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  color: #f5f5f2;
-  background: #111;
-  opacity: 1;
-  visibility: visible;
-  transition: opacity 650ms ease, visibility 650ms ease;
-}
-.site-loader.is-leaving { opacity: 0; visibility: hidden; pointer-events: none; }
-.site-loader__inner { display: grid; justify-items: center; gap: 19px; }
-.site-loader__crystal {
-  width: 68px;
-  height: 68px;
-  overflow: visible;
-  animation: crystal-turn 7s ease-in-out infinite;
-  filter: drop-shadow(0 0 16px rgba(255,255,255,.22));
-}
-.site-loader__label {
-  margin: 0;
-  font-family: var(--serif);
-  font-size: .78rem;
-  letter-spacing: .28em;
-}
-.site-loader__caption {
-  margin: -13px 0 0;
-  color: #aaa9a2;
-  font-size: .58rem;
-  letter-spacing: .18em;
-}
-.site-loader__track {
-  width: 130px;
-  height: 1px;
-  overflow: hidden;
-  background: #444;
-}
-.site-loader__track::after {
-  display: block;
-  width: 45%;
-  height: 100%;
-  content: '';
-  background: #f5f5f2;
-  animation: loader-progress 1.25s ease-in-out infinite;
-}
-.motion-ready [data-reveal] {
-  opacity: 0;
-  transform: translate3d(0, 22px, 0);
-  transition: opacity 750ms ease, transform 750ms cubic-bezier(.2,.7,.2,1);
-  transition-delay: var(--reveal-delay, 0ms);
-}
-.motion-ready [data-reveal="from-left"] { transform: translate3d(-22px, 0, 0); }
-.motion-ready [data-reveal="from-right"] { transform: translate3d(22px, 0, 0); }
-.motion-ready [data-reveal].is-revealed { opacity: 1; transform: translate3d(0,0,0); }
-.hero-visual { overflow: hidden; }
-.hero-visual img { animation: crystal-breathe 18s ease-in-out infinite alternate; }
-.hero-visual::after {
-  position: absolute;
-  z-index: 1;
-  inset: 0;
-  content: '';
-  pointer-events: none;
-  background: linear-gradient(112deg, transparent 34%, rgba(255,255,255,.13) 49%, transparent 62%);
-  transform: translateX(-130%);
-  animation: crystal-sheen 13s ease-in-out infinite;
-}
-@keyframes crystal-turn {
-  0%, 100% { transform: translateY(0) rotate(-3deg); }
-  50% { transform: translateY(-7px) rotate(5deg); }
-}
-@keyframes loader-progress {
-  0% { transform: translateX(-110%); }
-  100% { transform: translateX(330%); }
-}
-@keyframes crystal-breathe {
-  from { transform: scale(1.015); }
-  to { transform: scale(1.065); }
-}
-@keyframes crystal-sheen {
-  0%, 56% { transform: translateX(-130%); }
-  78%, 100% { transform: translateX(130%); }
-}
+/* Restaurant concept: phone layout */
 @media (max-width: 760px) {
   .restaurant-showcase { padding-block: 58px 72px; }
   .restaurant-heading { gap: 10px; }
@@ -1244,15 +1159,277 @@ body.is-loading { overflow: hidden; }
   .restaurant-work .work-meta { text-align: left; }
   .restaurant-work-link { margin-top: 7px; }
 }
+
+/* ==========================================================
+   Gemstone layer
+   宝石のカット（面取り）と、面を走る光を全体の共通モチーフにしています。
+   色は増やさず、白〜黒の光の変化だけで見せます。
+   ========================================================== */
+
+:root {
+  --ease-gem: cubic-bezier(.2, .7, .2, 1);
+}
+
+/* --- ローダー（最初の1回だけ表示） --- */
+body.is-loading { overflow: hidden; }
+.site-loader {
+  position: fixed;
+  z-index: 10000;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: #f5f5f2;
+  background: #111;
+  transition: opacity 700ms ease, visibility 700ms ease;
+}
+.site-loader.is-leaving { opacity: 0; visibility: hidden; pointer-events: none; }
+.site-loader__inner { display: grid; justify-items: center; gap: 18px; }
+
+.site-loader__label {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: .8rem;
+  letter-spacing: .32em;
+  text-indent: .32em;
+}
+.site-loader__track {
+  width: 120px;
+  height: 1px;
+  overflow: hidden;
+  background: #3c3c3c;
+}
+.site-loader__track::after {
+  display: block;
+  width: 45%;
+  height: 100%;
+  content: '';
+  background: #f5f5f2;
+  animation: loader-progress 1.25s ease-in-out infinite;
+}
+
+/* --- スクロール量を示すヘッダーの細い線 --- */
+.site-header::after {
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 1px;
+  background: var(--ink);
+  content: '';
+  transform: scaleX(var(--scroll, 0));
+  transform-origin: left;
+}
+
+/* --- 小さなひし形のしるし --- */
+.sec-label::before {
+  display: inline-block;
+  width: .4em;
+  height: .4em;
+  margin-right: .85em;
+  background: currentColor;
+  content: '';
+  vertical-align: .14em;
+  transform: rotate(45deg);
+  animation: gem-twinkle 6s ease-in-out infinite;
+}
+
+/* --- 宝石カット（四隅を落とした形） --- */
+.hero-visual__cut,
+.hero-visual::before,
+.about-portrait img,
+.about-portrait::after {
+  --c: clamp(26px, 3.6vw, 52px);
+}
+.hero-visual__cut,
+.about-portrait img {
+  clip-path: polygon(
+    var(--c) 0, calc(100% - var(--c)) 0, 100% var(--c), 100% calc(100% - var(--c)),
+    calc(100% - var(--c)) 100%, var(--c) 100%, 0 calc(100% - var(--c)), 0 var(--c));
+}
+/* 同じ形の細い枠線（外形から1px内側をくり抜く） */
+.hero-visual::before,
+.about-portrait::after {
+  border: 0;
+  background: #b4b4ad;
+  clip-path: polygon(evenodd,
+    var(--c) 0, calc(100% - var(--c)) 0, 100% var(--c), 100% calc(100% - var(--c)),
+    calc(100% - var(--c)) 100%, var(--c) 100%, 0 calc(100% - var(--c)), 0 var(--c), var(--c) 0,
+    calc(var(--c) + .4px) 1px, 1px calc(var(--c) + .4px), 1px calc(100% - var(--c) - .4px),
+    calc(var(--c) + .4px) calc(100% - 1px), calc(100% - var(--c) - .4px) calc(100% - 1px),
+    calc(100% - 1px) calc(100% - var(--c) - .4px), calc(100% - 1px) calc(var(--c) + .4px),
+    calc(100% - var(--c) - .4px) 1px, calc(var(--c) + .4px) 1px);
+}
+.about-portrait { background: transparent; }
+
+/* --- ヒーロー --- */
+.hero-visual {
+  overflow: visible;
+  background: transparent;
+}
+.hero-visual::before { z-index: 0; }
+.hero-visual,
+.hero-visual img { min-height: 0; }
+.hero-visual img { height: 100%; }
+.hero-visual__cut {
+  position: relative;
+  z-index: 1;
+  height: clamp(520px, 66svh, 740px);
+  overflow: hidden;
+  background: #191919;
+  transform: perspective(1100px) rotateX(calc(var(--ty, 0) * -3deg)) rotateY(calc(var(--tx, 0) * 3deg));
+  transition: transform 900ms var(--ease-gem);
+}
+.hero-visual img { animation: crystal-breathe 18s ease-in-out infinite alternate; }
+/* 写真の上をときどき横切る光 */
+.hero-visual__cut::after {
+  position: absolute;
+  inset: 0;
+  content: '';
+  pointer-events: none;
+  background: linear-gradient(112deg, transparent 34%, rgba(255,255,255,.16) 49%, transparent 62%);
+  transform: translateX(-130%);
+  animation: crystal-sheen 11s ease-in-out infinite;
+}
+.hero-visual figcaption {
+  right: calc(clamp(26px, 3.6vw, 52px) + 4px);
+  bottom: 14px;
+  background: none;
+  letter-spacing: .18em;
+}
+
+/* ヒーローの登場：ローダーが消えたあと、上から順に */
+.motion-ready .hero-title span {
+  clip-path: inset(0 0 100% 0);
+  transform: translateY(.4em);
+  transition: clip-path 1100ms var(--ease-gem), transform 1100ms var(--ease-gem);
+}
+.motion-ready .hero-title span:nth-child(2) { transition-delay: 140ms; }
+.motion-ready .eyebrow,
+.motion-ready .hero-description,
+.motion-ready .hero-actions,
+.motion-ready .hero-visual {
+  opacity: 0;
+  transition: opacity 900ms ease, translate 900ms var(--ease-gem);
+  translate: 0 16px;
+}
+.motion-ready .hero-description { transition-delay: 380ms; }
+.motion-ready .hero-actions { transition-delay: 500ms; }
+.motion-ready .hero-visual { transition-delay: 200ms; transition-duration: 1300ms; }
+.motion-ready.hero-in .hero-title span { clip-path: inset(-.3em); transform: none; }
+.motion-ready.hero-in .eyebrow,
+.motion-ready.hero-in .hero-description,
+.motion-ready.hero-in .hero-actions,
+.motion-ready.hero-in .hero-visual { opacity: 1; translate: 0 0; }
+
+/* --- ボタン：左から静かに塗りが入る --- */
+.button {
+  background: linear-gradient(var(--ink), var(--ink)) no-repeat left / 0 100%;
+  transition: background-size 420ms var(--ease-gem), color 300ms ease, border-color 300ms ease;
+}
+.button:hover,
+.button:focus-visible {
+  border-color: var(--ink);
+  color: var(--white);
+  background: linear-gradient(var(--ink), var(--ink)) no-repeat left / 100% 100%;
+}
+.button::after,
+.section-link::after { transition: transform 300ms var(--ease-gem); }
+.button:hover::after,
+.section-link:hover::after { transform: translate(3px, -3px); }
+
+/* --- 作品サムネイル：対角を落とし、ホバーで光が走る --- */
+.work-thumb {
+  position: relative;
+  clip-path: polygon(22px 0, 100% 0, 100% calc(100% - 22px), calc(100% - 22px) 100%, 0 100%, 0 22px);
+}
+.work-thumb::after {
+  position: absolute;
+  inset: 0;
+  content: '';
+  pointer-events: none;
+  background: linear-gradient(112deg, transparent 38%, rgba(255,255,255,.34) 50%, transparent 62%);
+  transform: translateX(-120%);
+}
+.work-item:hover .work-thumb::after {
+  transform: translateX(120%);
+  transition: transform 900ms var(--ease-gem);
+}
+.work-thumb img { transition: transform 900ms var(--ease-gem), filter 500ms ease; }
+
+/* --- サービスカード・工程：控えめな反応 --- */
+.service-card { position: relative; }
+.service-card::after {
+  position: absolute;
+  top: 26px;
+  right: 26px;
+  width: 7px;
+  height: 7px;
+  background: var(--ink);
+  content: '';
+  opacity: 0;
+  transform: rotate(45deg) scale(.4);
+  transition: opacity 300ms ease, transform 500ms var(--ease-gem);
+}
+.service-card:hover::after { opacity: 1; transform: rotate(225deg) scale(1); }
+.flow-num { transition: color 300ms ease; }
+.flow-step:hover .flow-num { color: var(--ink); }
+
+/* --- スクロールで現れる --- */
+.motion-ready [data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 22px, 0);
+  transition: opacity 800ms ease, transform 800ms var(--ease-gem);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.motion-ready [data-reveal].is-revealed { opacity: 1; transform: none; }
+
+@keyframes loader-progress {
+  0% { transform: translateX(-110%); }
+  100% { transform: translateX(330%); }
+}
+@keyframes crystal-breathe {
+  from { transform: scale(1.015); }
+  to { transform: scale(1.065); }
+}
+@keyframes crystal-sheen {
+  0%, 52% { transform: translateX(-130%); }
+  76%, 100% { transform: translateX(130%); }
+}
+@keyframes gem-twinkle {
+  0%, 84%, 100% { opacity: 1; transform: rotate(45deg) scale(1); }
+  90% { opacity: .35; transform: rotate(135deg) scale(.6); }
+  95% { opacity: 1; transform: rotate(225deg) scale(1.25); }
+}
+
+@media (max-width: 900px) {
+  .hero-visual__cut { height: clamp(460px, 56svh, 620px); }
+}
+
+@media (max-width: 640px) {
+  .hero-visual__cut { height: auto; aspect-ratio: 4 / 5; }
+  .work-thumb {
+    clip-path: polygon(16px 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%, 0 16px);
+  }
+}
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .site-loader, .site-loader__crystal, .site-loader__track::after, .hero-visual img, .hero-visual::after {
+  .site-loader,
+  .site-loader__track::after,
+  .hero-visual img,
+  .hero-visual__cut,
+  .hero-visual__cut::after,
+  .sec-label::before {
     animation: none !important;
     transition: none !important;
   }
-  .motion-ready [data-reveal],
-  .motion-ready [data-reveal].is-revealed {
-    opacity: 1;
-    transform: none;
-    transition: none !important;
-  }
 }
+
+/* 枠線は写真の後ろへ / 見出しラベルが折り返さない幅に */
+.about-portrait img { position: relative; z-index: 1; }
+@media (min-width: 641px) {
+  .page-hero .container { grid-template-columns: 210px 1fr; }
+}
+
+/* ヘッダーに隠れないよう、ページ内リンクの到着位置を下げる */
+#senrin-concepts { scroll-margin-top: 78px; }
