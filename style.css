@@ -1084,82 +1084,6 @@ section {
 
 
 
-/* Chiwa restaurant concept trio */
-.restaurant-showcase {
-  padding-block: clamp(66px, 9vw, 116px);
-  border-top: 1px solid var(--line);
-  background: var(--white);
-}
-.restaurant-heading {
-  align-items: end;
-  gap: clamp(28px, 7vw, 96px);
-  margin-bottom: 31px;
-}
-.restaurant-heading .sec-title {
-  max-width: 650px;
-  line-height: 1.6;
-}
-.restaurant-lead {
-  max-width: 430px;
-  margin: 0 0 4px;
-  color: var(--muted);
-  font-size: .84rem;
-  line-height: 2.05;
-}
-.restaurant-series-note {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  padding: 15px 0;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-}
-.restaurant-series-mark {
-  color: var(--muted);
-  font-family: var(--serif);
-  font-size: .77rem;
-  letter-spacing: .15em;
-}
-.restaurant-series-mark { flex: 0 0 auto; }
-.restaurant-series-note p {
-  margin: 0;
-  color: var(--muted);
-  font-size: .73rem;
-}
-.restaurant-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(24px, 4vw, 56px);
-  margin-top: 28px;
-}
-.restaurant-work {
-  display: block;
-}
-.restaurant-work .work-thumb img { filter: grayscale(100%); }
-.restaurant-work:hover .work-thumb img,
-.restaurant-work:focus-visible .work-thumb img { filter: grayscale(0%); }
-.restaurant-work-link {
-  display: inline-block;
-  margin-top: 7px;
-  color: var(--muted);
-  font-size: .72rem;
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
-.restaurant-work:hover .restaurant-work-link { color: var(--ink); }
-
-/* Restaurant concept: phone layout */
-@media (max-width: 760px) {
-  .restaurant-showcase { padding-block: 58px 72px; }
-  .restaurant-heading { gap: 10px; }
-  .restaurant-heading .sec-title { font-size: clamp(1.7rem, 8vw, 2.3rem); }
-  .restaurant-series-note { align-items: flex-start; flex-direction: column; gap: 4px; }
-  .restaurant-grid { grid-template-columns: 1fr; gap: 34px; }
-  .restaurant-work .work-info { grid-template-columns: 1fr; gap: 4px; }
-  .restaurant-work .work-meta { text-align: left; }
-  .restaurant-work-link { margin-top: 7px; }
-}
-
 /* ==========================================================
    Gemstone layer
    宝石のカット（面取り）と、面を走る光を全体の共通モチーフにしています。
@@ -1431,5 +1355,42 @@ body.is-loading { overflow: hidden; }
   .page-hero .container { grid-template-columns: 210px 1fr; }
 }
 
-/* ヘッダーに隠れないよう、ページ内リンクの到着位置を下げる */
-#senrin-concepts { scroll-margin-top: 78px; }
+/* --- 制作実績：3つのWebサイトを1枚にまとめたサムネイル --- */
+#senrin-concepts { scroll-margin-top: 110px; }
+.work-thumb--trio {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 3px;
+  background: var(--white);
+}
+.work-thumb--trio a {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  background: var(--soft);
+}
+.work-thumb--trio img { filter: grayscale(100%); }
+.work-thumb--trio a:hover img,
+.work-thumb--trio a:focus-visible img { filter: grayscale(0%); }
+.work-thumb--trio span {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 34px 12px 11px;
+  color: var(--white);
+  background: linear-gradient(transparent, rgba(0, 0, 0, .62));
+  font-size: .72rem;
+  letter-spacing: .12em;
+}
+.work-thumb--trio span::after {
+  margin-left: .5em;
+  content: '↗';
+}
+.work-note {
+  grid-column: 1 / -1;
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: .76rem;
+  line-height: 1.9;
+}
