@@ -1084,7 +1084,7 @@ section {
 
 
 
-/* Senrin restaurant concept trio */
+/* Chiwa restaurant concept trio */
 .restaurant-showcase {
   padding-block: clamp(66px, 9vw, 116px);
   border-top: 1px solid var(--line);
@@ -1114,8 +1114,7 @@ section {
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
 }
-.restaurant-series-mark,
-.restaurant-card__type {
+.restaurant-series-mark {
   color: var(--muted);
   font-family: var(--serif);
   font-size: .77rem;
@@ -1129,68 +1128,25 @@ section {
 }
 .restaurant-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(14px, 2.2vw, 28px);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(24px, 4vw, 56px);
   margin-top: 28px;
 }
-.restaurant-card {
+.restaurant-work {
   display: block;
-  min-width: 0;
 }
-.restaurant-card__image {
-  position: relative;
-  overflow: hidden;
-  aspect-ratio: 1.08 / 1;
-  background: #202020;
-}
-.restaurant-card__image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: grayscale(100%);
-  transition: transform 700ms cubic-bezier(.2,.7,.2,1), filter 500ms ease;
-}
-.restaurant-card:hover .restaurant-card__image img,
-.restaurant-card:focus-visible .restaurant-card__image img {
-  transform: scale(1.045);
-  filter: grayscale(20%);
-}
-.restaurant-card__number {
-  position: absolute;
-  top: 14px;
-  left: 14px;
-  display: grid;
-  width: 39px;
-  height: 39px;
-  place-items: center;
-  border: 1px solid rgba(255,255,255,.8);
-  border-radius: 50%;
-  color: #fff;
-  background: rgba(16,16,16,.28);
-  font-family: var(--serif);
-  font-size: .9rem;
-  backdrop-filter: blur(6px);
-}
-.restaurant-card__copy { padding: 15px 1px 0; }
-.restaurant-card__type { margin: 0 0 5px; font-size: .69rem; }
-.restaurant-card__copy h3 {
-  margin: 0;
-  font-family: var(--display);
-  font-size: clamp(1rem, 1.4vw, 1.2rem);
-  font-weight: 500;
-}
-.restaurant-card__link {
-  display: inline-flex;
-  gap: 10px;
-  align-items: center;
-  margin-top: 12px;
-  padding-bottom: 3px;
-  border-bottom: 1px solid var(--line);
+.restaurant-work .work-thumb img { filter: grayscale(100%); }
+.restaurant-work:hover .work-thumb img,
+.restaurant-work:focus-visible .work-thumb img { filter: grayscale(0%); }
+.restaurant-work-link {
+  display: inline-block;
+  margin-top: 7px;
   color: var(--muted);
   font-size: .72rem;
-  transition: color 180ms ease, border-color 180ms ease;
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
-.restaurant-card:hover .restaurant-card__link { color: var(--ink); border-color: var(--ink); }
+.restaurant-work:hover .restaurant-work-link { color: var(--ink); }
 
 /* Gem-inspired page entrance and restrained motion */
 body.is-loading { overflow: hidden; }
@@ -1283,13 +1239,10 @@ body.is-loading { overflow: hidden; }
   .restaurant-heading { gap: 10px; }
   .restaurant-heading .sec-title { font-size: clamp(1.7rem, 8vw, 2.3rem); }
   .restaurant-series-note { align-items: flex-start; flex-direction: column; gap: 4px; }
-  .restaurant-grid { grid-template-columns: 1fr; gap: 25px; }
-  .restaurant-card { display: grid; grid-template-columns: minmax(115px, .8fr) 1.2fr; align-items: center; gap: 14px; }
-  .restaurant-card__image { aspect-ratio: 1 / 1; }
-  .restaurant-card__number { top: 8px; left: 8px; width: 31px; height: 31px; font-size: .75rem; }
-  .restaurant-card__copy { padding: 8px 0; }
-  .restaurant-card__copy h3 { font-size: .98rem; }
-  .restaurant-card__link { margin-top: 8px; }
+  .restaurant-grid { grid-template-columns: 1fr; gap: 34px; }
+  .restaurant-work .work-info { grid-template-columns: 1fr; gap: 4px; }
+  .restaurant-work .work-meta { text-align: left; }
+  .restaurant-work-link { margin-top: 7px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .site-loader, .site-loader__crystal, .site-loader__track::after, .hero-visual img, .hero-visual::after {
