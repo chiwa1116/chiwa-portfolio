@@ -288,9 +288,10 @@ section {
   background: var(--paper);
 }
 
+/* 写真は元データ（640×1138px）より大きく引き伸ばさない幅にしている */
 .hero-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) min(44vw, 620px);
 }
 
 .hero-copy-block {
@@ -396,7 +397,7 @@ section {
 
 .hero-visual {
   position: relative;
-  height: max(100svh, 640px);
+  height: clamp(640px, 100svh, 1100px);
   margin: 0;
 }
 
@@ -426,7 +427,6 @@ section {
   object-fit: cover;
   object-position: center 48%;
   filter: grayscale(100%);
-  animation: photo-zoom 18s ease-in-out infinite alternate;
 }
 
 .hero-visual figcaption {
@@ -1223,11 +1223,6 @@ section {
 @keyframes loader-line {
   from { transform: translateX(-110%); }
   to { transform: translateX(330%); }
-}
-
-@keyframes photo-zoom {
-  from { transform: scale(1.015); }
-  to { transform: scale(1.065); }
 }
 
 @keyframes photo-sheen {
